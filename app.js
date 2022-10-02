@@ -64,7 +64,7 @@ function crosseOver(p1,p2){
     let c1 = [...p1.slice(0,point+1), ...p2.slice(point+1,p1.length)];
     let c2 = [...p2.slice(0,point+1), ...p1.slice(point+1,p1.length)];
 
-    return [c1,i];
+    return [c1,c2];
 }
 
 
