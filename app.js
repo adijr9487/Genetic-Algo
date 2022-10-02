@@ -42,7 +42,7 @@ for(let p = 0; p < pop.length; p++){
 
 for(let p=0; p < pop.length; p++){
     let v = (fitness[p]/sum);
-    prob.push([{x1: pop[p][0], x2: pop[p][1]},v]);
+    prob.push([[pop[p][0], pop[p][1]],v]);
 }
 
 let res = pick(prob);
@@ -52,7 +52,7 @@ let newPop = [];
 
 // CrossOver
 function crosseOver(p1,p2){
-
+    
     let point = param * Math.random();
     
     while(point == param){
@@ -61,10 +61,10 @@ function crosseOver(p1,p2){
 
     point = Math.floor(point);
 
-    c1 = p1.slice(0,point+1) + p2.slice(point+1,p1.length);
-    c2 = p2.slice(0,point+1) + p1.slice(point+1,p1.length);
+    let c1 = [...p1.slice(0,point+1), ...p2.slice(point+1,p1.length)];
+    let c2 = [...p2.slice(0,point+1), ...p1.slice(point+1,p1.length)];
 
-    return [c1,c2];
+    return [c1,i];
 }
 
 
