@@ -11,5 +11,6 @@
   "license": "ISC",
   "dependencies": {
     "pick-random-weighted": "^2.0.0"
-  }
+  },
+  "type": "module"
 }
