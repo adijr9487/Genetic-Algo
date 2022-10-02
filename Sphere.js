@@ -1,11 +1,11 @@
 import pick from 'pick-random-weighted';
 
 // Population Size
-const populationSize = 1000;
+const populationSize = 500;
 
 // Function
-const l = -5;
-const h = 5;
+const l = -10000;
+const h = 10000;
 const param = 2;
 let pop = [];
 
@@ -23,7 +23,8 @@ for(let i=1; i<=populationSize; i++){
 
 // Fitness
 function helper(x,y){
-    let val = -20*Math.exp(-0.2*Math.sqrt(0.5*(x*x+y*y))) - Math.exp(0.5*(Math.cos(2*Math.PI*x)+Math.cos(2*Math.PI*y))) + (Math.E + 20);
+    // let val = -20*Math.exp(-0.2*Math.sqrt(0.5*(x*x+y*y))) - Math.exp(0.5*(Math.cos(2*Math.PI*x)+Math.cos(2*Math.PI*y))) + (Math.E + 20);
+    let val = x * x + y * y;
     return val;
 }
 
@@ -51,7 +52,7 @@ while(totalTimes <= 1000){
     let sum = 0;
 
     // Random Population Printed
-
+    // console.log(pop);
 
     for(let p = 0; p < pop.length; p++){
         let val = helper(pop[p][0], pop[p][1]);
@@ -66,15 +67,17 @@ while(totalTimes <= 1000){
         v = v*100;
         prob.push([[pop[p][0], pop[p][1]],v]);
     }
-
+    // console.log(prob)
 
     let newPop = [];
     for(let p=0; p<pop.length/2; p++){
         
         let r1 = pick(prob);
         let r2 = pick(prob);
+        // console.log(r1, r2);
         let child = crosseOver(r1,r2);
-
+        
+        // console.log(child);
         newPop.push(child[0]);
         newPop.push(child[1]);
     }
@@ -90,12 +93,13 @@ while(totalTimes <= 1000){
             po = param * Math.random();
         }    
         po = Math.floor(po);
-        v[po] = -5 + Math.random(10);
+        v[po] = -5 + Math.random()*10;
+        
         b = Math.min(b,helper(v[0],v[1]));
         newPopPop.push(v);
     }
     console.log(`Generation:${totalTimes}  `, b);
-    best = Math.min(best,b);
+    best = b;
     pop = newPopPop;
     totalTimes++;
 }
