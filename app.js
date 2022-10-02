@@ -10,7 +10,8 @@ const param = 2;
 let pop = [];
 
 let best = Number.MAX_VALUE;
-
+let mini = [];
+let fit = Number.MAX_VALUE;
 
 for(let i=1; i<=populationSize; i++){
     let a1 = -5 + 10 * Math.random();
@@ -51,7 +52,7 @@ while(totalTimes <= 1000){
     let sum = 0;
 
     // Random Population Printed
-
+    // console.log(pop)
 
     for(let p = 0; p < pop.length; p++){
         let val = helper(pop[p][0], pop[p][1]);
@@ -63,6 +64,7 @@ while(totalTimes <= 1000){
     // Mating Operation
     for(let p=0; p < pop.length; p++){
         let v = fitness[p]/sum;
+        
         v = v*100;
         prob.push([[pop[p][0], pop[p][1]],v]);
     }
@@ -73,12 +75,14 @@ while(totalTimes <= 1000){
         
         let r1 = pick(prob);
         let r2 = pick(prob);
+
         let child = crosseOver(r1,r2);
 
         newPop.push(child[0]);
         newPop.push(child[1]);
     }
 
+    // console.log(newPop)
     
     let newPopPop = [];
     // Mutation
@@ -90,15 +94,28 @@ while(totalTimes <= 1000){
             po = param * Math.random();
         }    
         po = Math.floor(po);
-        v[po] = -5 + Math.random(10);
+        v[po] = -5 + 10 * Math.random();
+        
+        if(helper(v[0],v[1]) < fit){
+            fit = helper(v[0],v[1]);
+            mini = [v[0],v[1]];
+        }
+
         b = Math.min(b,helper(v[0],v[1]));
         newPopPop.push(v);
     }
+
+    // console.log(newPopPop)
+
     console.log(`Generation:${totalTimes}  `, b);
     best = Math.min(best,b);
+    newPopPop.pop();
+    newPopPop.push(mini)
     pop = newPopPop;
+    
     totalTimes++;
 }
+
 console.log("Overall Best: ", best)
 
 
