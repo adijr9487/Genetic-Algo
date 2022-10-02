@@ -1,7 +1,7 @@
 import pick from 'pick-random-weighted';
 
 // Population Size
-const populationSize = 500;
+const populationSize = 1000;
  
 // Function
 const l = -10;
