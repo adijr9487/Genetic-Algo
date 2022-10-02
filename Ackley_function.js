@@ -4,8 +4,8 @@ import pick from 'pick-random-weighted';
 const populationSize = 500;
 
 // Function
-const l = -10000;
-const h = 10000;
+const l = -5;
+const h = 5;
 const param = 2;
 let pop = [];
 
@@ -53,11 +53,7 @@ while(totalTimes <= 1000){
     let sum = 0;
 
     // Random Population Printed
-<<<<<<< HEAD:Sphere.js
-    // console.log(pop);
-=======
     // console.log(pop)
->>>>>>> 1c7a5fc1570ffa7607a05f670aab00c3ceb96f9b:Ackley_function.js
 
     for(let p = 0; p < pop.length; p++){
         let val = helper(pop[p][0], pop[p][1]);
@@ -80,11 +76,6 @@ while(totalTimes <= 1000){
         
         let r1 = pick(prob);
         let r2 = pick(prob);
-<<<<<<< HEAD:Sphere.js
-        // console.log(r1, r2);
-=======
-
->>>>>>> 1c7a5fc1570ffa7607a05f670aab00c3ceb96f9b:Ackley_function.js
         let child = crosseOver(r1,r2);
         
         // console.log(child);
@@ -104,10 +95,6 @@ while(totalTimes <= 1000){
             po = param * Math.random();
         }    
         po = Math.floor(po);
-<<<<<<< HEAD:Sphere.js
-        v[po] = -5 + Math.random()*10;
-        
-=======
         v[po] = -5 + 10 * Math.random();
         
         if(helper(v[0],v[1]) < fit){
@@ -115,7 +102,6 @@ while(totalTimes <= 1000){
             mini = [v[0],v[1]];
         }
 
->>>>>>> 1c7a5fc1570ffa7607a05f670aab00c3ceb96f9b:Ackley_function.js
         b = Math.min(b,helper(v[0],v[1]));
         newPopPop.push(v);
     }
@@ -123,13 +109,9 @@ while(totalTimes <= 1000){
     // console.log(newPopPop)
 
     console.log(`Generation:${totalTimes}  `, b);
-<<<<<<< HEAD:Sphere.js
-    best = b;
-=======
     best = Math.min(best,b);
     newPopPop.pop();
     newPopPop.push(mini)
->>>>>>> 1c7a5fc1570ffa7607a05f670aab00c3ceb96f9b:Ackley_function.js
     pop = newPopPop;
     
     totalTimes++;
