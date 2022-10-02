@@ -4,8 +4,8 @@ import pick from 'pick-random-weighted';
 const populationSize = 500;
  
 // Function
-const l = -10000;
-const h = 10000;
+const l = -100;
+const h = 100;
 const param = 2;
 let pop = [];
 
@@ -14,8 +14,8 @@ let mini = [];
 let fit = Number.MAX_VALUE;
 
 for(let i=1; i<=populationSize; i++){
-    let a1 = -5 + 10 * Math.random();
-    let a2 = -5 + 10 * Math.random();
+    let a1 = l + (h-l) * Math.random();
+    let a2 = l + (h-l) * Math.random();
     let temp = [a1,a2];
     pop.push(temp);
 }
@@ -95,7 +95,7 @@ while(totalTimes <= 1000){
             po = param * Math.random();
         }    
         po = Math.floor(po);
-        v[po] = -5 + 10 * Math.random();
+        v[po] = l + (h-l) * Math.random();
         
         if(helper(v[0],v[1]) < fit){
             fit = helper(v[0],v[1]);
