@@ -1,7 +1,7 @@
 import pick from 'pick-random-weighted';
 
 // Population Size
-const populationSize = 10;
+const populationSize = 1000;
 
 // Function
 const l = -5;
@@ -9,7 +9,7 @@ const h = 5;
 const param = 2;
 let pop = [];
 
-let best = Number.MIN_VALUE;
+let best = Number.MAX_VALUE;
 
 
 for(let i=1; i<=populationSize; i++){
@@ -23,9 +23,10 @@ for(let i=1; i<=populationSize; i++){
 
 // Fitness
 function helper(x,y){
-    // return -20*Math.exp(-0.2*Math.sqrt(0.5*(x*x+y*y))) - Math.exp(0.5*(Math.cos(2*Math.PI*x)+Math.cos(2*Math.PI*y))) + Math.E + 20
-    return x*x + y*y;
+    let val = -20*Math.exp(-0.2*Math.sqrt(0.5*(x*x+y*y))) - Math.exp(0.5*(Math.cos(2*Math.PI*x)+Math.cos(2*Math.PI*y))) + (Math.E + 20);
+    return val;
 }
+
 // CrossOver
 function crosseOver(p1,p2){
     
@@ -44,37 +45,44 @@ function crosseOver(p1,p2){
 }
 
 let totalTimes = 1;
-while(totalTimes <= 5000){
+while(totalTimes <= 1000){
     let fitness = [];
     let prob = [];
     let sum = 0;
+
+    // Random Population Printed
+
+
     for(let p = 0; p < pop.length; p++){
-        let val = (pop[p][0], pop[p][1]);
-        sum += val;
-        fitness.push(val);
+        let val = helper(pop[p][0], pop[p][1]);
+        sum += 1/val;
+        fitness.push(1/val);
     }
 
 
     // Mating Operation
     for(let p=0; p < pop.length; p++){
-        let v = (fitness[p]/sum);
+        let v = fitness[p]/sum;
+        v = v*100;
         prob.push([[pop[p][0], pop[p][1]],v]);
     }
 
+
     let newPop = [];
     for(let p=0; p<pop.length/2; p++){
+        
         let r1 = pick(prob);
         let r2 = pick(prob);
-
         let child = crosseOver(r1,r2);
 
         newPop.push(child[0]);
         newPop.push(child[1]);
     }
 
+    
     let newPopPop = [];
     // Mutation
-    let b = Number.MIN_VALUE;
+    let b = Number.MAX_VALUE;
     for(let p=0; p<newPop.length; p++){
         let v = newPop[p];
         let po = param * Math.random();
@@ -83,16 +91,15 @@ while(totalTimes <= 5000){
         }    
         po = Math.floor(po);
         v[po] = -5 + Math.random(10);
-        b = Math.max(b,helper(v[0],v[1]));
+        b = Math.min(b,helper(v[0],v[1]));
         newPopPop.push(v);
     }
     console.log(`Generation:${totalTimes}  `, b);
-    best = Math.max(best,b);
+    best = Math.min(best,b);
     pop = newPopPop;
     totalTimes++;
 }
 console.log("Overall Best: ", best)
-// console.log(newPopPop)
 
 
 
