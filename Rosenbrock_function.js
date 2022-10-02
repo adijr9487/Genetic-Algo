@@ -4,8 +4,8 @@ import pick from 'pick-random-weighted';
 const populationSize = 500;
  
 // Function
-const l = -10000;
-const h = 10000;
+const l = -10;
+const h = 10;
 const param = 2;
 let pop = [];
 
@@ -26,7 +26,7 @@ for(let i=1; i<=populationSize; i++){
 function helper(x,y){
     // let val = -20*Math.exp(-0.2*Math.sqrt(0.5*(x*x+y*y))) - Math.exp(0.5*(Math.cos(2*Math.PI*x)+Math.cos(2*Math.PI*y))) + (Math.E + 20);
     // let val = x * x + y * y;
-    let val = 100 * (x + y * y) * (x + y * y) + (1 - y) * (1 - y);
+    let val = 100 * (x - y * y) * (x - y * y) + (1 - y) * (1 - y);
     return val;
 }
 
