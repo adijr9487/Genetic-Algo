@@ -107,7 +107,8 @@ while(totalTimes <= 1000){
     }
 
     // console.log(newPopPop)
-
+    
+    // Generation Best
     console.log(`Generation:${totalTimes}  `, b);
     best = Math.min(best,b);
     newPopPop.pop();

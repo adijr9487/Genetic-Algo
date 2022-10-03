@@ -20,12 +20,10 @@ for(let i=1; i<=populationSize; i++){
     pop.push(temp);
 }
 
-// Function Expression x^2 + y^2
 
 // Fitness
 function helper(x,y){
-    // let val = -20*Math.exp(-0.2*Math.sqrt(0.5*(x*x+y*y))) - Math.exp(0.5*(Math.cos(2*Math.PI*x)+Math.cos(2*Math.PI*y))) + (Math.E + 20);
-    let val = x * x + y * y;
+    let val = -20*Math.exp(-0.2*Math.sqrt(0.5*(x*x+y*y))) - Math.exp(0.5*(Math.cos(2*Math.PI*x)+Math.cos(2*Math.PI*y))) + (Math.E + 20);
     return val;
 }
 
@@ -117,7 +115,7 @@ while(totalTimes <= 1000){
     totalTimes++;
 }
 
-console.log("Overall Best: ", best)
+// console.log("Overall Best: ", best)
 
 
 

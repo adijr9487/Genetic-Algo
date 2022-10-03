@@ -20,7 +20,6 @@ for(let i=1; i<=populationSize; i++){
     pop.push(temp);
 }
 
-// Function Expression x^2 + y^2
 
 // Fitness
 function helper(x,y){
@@ -67,7 +66,7 @@ while(totalTimes <= 1000){
     for(let p=0; p < pop.length; p++){
         let v = fitness[p]/sum;
         
-        v = v*100;
+        // v = v*100;
         prob.push([[pop[p][0], pop[p][1]],v]);
     }
     // console.log(prob)
@@ -118,7 +117,7 @@ while(totalTimes <= 1000){
     totalTimes++;
 }
 
-console.log("Overall Best: ", best)
+// console.log("Overall Best: ", best)
 
 
 
