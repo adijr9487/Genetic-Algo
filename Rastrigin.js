@@ -7,6 +7,7 @@ const populationSize = 500;
 const l = -5.12;
 const h = 5.12;
 const param = 2;
+
 let pop = [];
 
 let best = Number.MAX_VALUE;
@@ -20,7 +21,6 @@ for(let i=1; i<=populationSize; i++){
     pop.push(temp);
 }
 
-// Function Expression x^2 + y^2
 
 // Fitness
 function helper(x,y){
@@ -121,7 +121,7 @@ while(totalTimes <= 1000){
     totalTimes++;
 }
 
-console.log("Overall Best: ", best)
+// console.log("Overall Best: ", best)
 
 
 
